@@ -1,0 +1,808 @@
+openapi: 3.0.1
+info:
+  title: PMS API
+  description: SPOR API for PMS resources. This service enables the user to view products (MedicinalProduct and other resources) and allows the user to search for products on the provided search criteria. The full data for a medicinal product is split across several FHIR resources, with linkages between them (FHIR references). FHIR endpoints and services are normally single resource specific.
+  version: "0.8"
+servers:
+- url: https://spor-msfhir-dev.azurewebsites.net
+paths:
+  /MedicinalProduct/{id}:
+    get:
+      summary: MedicinalProduct - Get a resourceby ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c470
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProduct:
+    get:
+      summary: MedicinalProduct - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c471
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      - name: identifier
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: '{mpid}'
+      - name: name
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: Equilidem 2.5 mg film-coated tablets
+      - name: name-language
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: EN
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+ 
+  /MedicinalProductPharmaceutical/{id}:
+    get:
+      summary: MedicinalProductPharmaceutical - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c473
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductPharmaceutical:
+    get:
+      summary: MedicinalProductPharmaceutical - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c474
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      - name: identifier
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: '{PhPID}'
+      - name: route
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: OralUse
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+
+  /MedicinalProductAuthorization/{id}:
+    get:
+      summary: MedicinalProductAuthorization - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c575
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductAuthorization:
+    get:
+      summary: MedicinalProductAuthorization - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c476
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductPackaged/{id}:
+    get:
+      summary: MedicinalProductPackaged - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c478
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductPackaged:
+    get:
+      summary: MedicinalProductPackaged - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c479
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      - name: identifier
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: '{PCID}'
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+        
+  /MedicinalProductManufactured/{id}:
+    get:
+      summary: MedicinalProductManufactured - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c461
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductManufactured:
+    get:
+      summary: MedicinalProductManufactured - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c462
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductIngredient/{id}:
+    get:
+      summary: MedicinalProductIngredient - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c464
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductIngredient:
+    get:
+      summary: MedicinalProductIngredient - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c465
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductIndication/{id}:
+    get:
+      summary: MedicinalProductIndication - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c467
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductIndication:
+    get:
+      summary: MedicinalProductIndication - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c468
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+
+  /MedicinalProductInteraction/{id}:
+    get:
+      summary: MedicinalProductInteraction - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c430
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductInteraction:
+    get:
+      summary: MedicinalProductInteraction - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c431
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+
+  /MedicinalProductUndesirableEffect/{id}:
+    get:
+      summary: MedicinalProductUndesirableEffect - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c433
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductUndesirableEffect:
+    get:
+      summary: MedicinalProductUndesirableEffect - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c434
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+ 
+  /MedicinalProductContraindication/{id}:
+    get:
+      summary: MedicinalProductContraindication - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 5cc6c62d4a90c149c730c436
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /MedicinalProductContraindication:
+    get:
+      summary: MedicinalProductContraindication - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 5cc6c62d4a90c149c730c437
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+  /DeviceDefinition/{id}:
+    get:
+      summary: DeviceDefinition - Get a resource by ID
+      description: Get a resource by ID
+      operationId: 4cc6c62d4a90c149c730c436
+      parameters:
+      - name: id
+        in: path
+        description: String ID of the resource to get
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+        example: "1000"
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /DeviceDefinition:
+    get:
+      summary: DeviceDefinition - Search for a resource or resources
+      description: Search for a resource or resources
+      operationId: 4cc6c62d4a90c149c730c437
+      parameters:
+      - name: _lastUpdated
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: ge2019-01-01:00:00:00Z
+      - name: _id
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: "1000"
+      - name: identifier
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: 'dID'
+      responses:
+        200:
+          description: Returns a representation of a resource
+          content:
+            application/fhir+json; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        5XX:
+          description: Unexpected error.
+components: {}

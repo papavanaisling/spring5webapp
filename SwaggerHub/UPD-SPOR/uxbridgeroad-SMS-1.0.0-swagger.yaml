@@ -1,0 +1,100 @@
+openapi: 3.0.0
+info:
+  description: SPOR API for SMS resources. This service enables the user to retrieve a single substance (SubstanceSpecification) via one of its identifiers, or a collection of substances based on provided search criteria. Direct creation or updating of substances is not allowed (See the Change Request SMS
+    Service). Language translation of Substances is also possible.
+  version: 1.0.0
+  title: SMS API
+
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+servers:
+- url: https://spor-msfhir-dev.azurewebsites.net
+paths:
+  "/SubstanceSpecification/{substance-id}":
+    get:
+      summary: Use this operation to return information for a specific substance, identified by its substance-id.
+      description: This resource represents a single Substance Specification in SMS. Each SubstanceSpecification is identified by a string `substance-id/.
+      operationId: find SubstanceSpecification By Substance-id
+      parameters:
+        - name: substance-id
+          in: path
+          description: id of SubstanceSpecification to fetch
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            "*/*":
+              schema:
+                type: string
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
+  /SubstanceSpecification/:
+    get:
+      summary: Use this operation to return information for specific substances,
+        identified by search parameters.
+      operationId: search SubstanceSpecification
+      parameters:
+        - name: identifier
+          in: query
+          description: SubstanceSpecification identifier
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: SubstanceSpecification name
+          required: false
+          schema:
+            type: string
+        - name: domain
+          in: query
+          description: Human / Vet
+          required: false
+          schema:
+            type: string
+        - name: code
+          in: query
+          description: SubstanceSpecification code
+          required: false
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: SubstanceSpecification type
+          required: false
+          schema:
+            type: string
+        - name: _lastUpdated
+          in: query
+          description: Searches on the modified date of the data
+            e.g._lastUpdated=ge2018-01-01&_lastUpdated=le2018-12-31
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            "*/*":
+              schema:
+                type: string
+        400:
+          description: Bad request.
+        401:
+          description: Authorization information is missing or invalid.
+        404:
+          description: A resource with the specified ID was not found.
+        5XX:
+          description: Unexpected error.
